@@ -8,7 +8,6 @@ enum AuthErrorType {
   network,
   unknown,
 }
-
 class AuthException implements Exception {
   final String message;
   final AuthErrorType type;
@@ -54,7 +53,6 @@ class AuthException implements Exception {
         );
     }
   }
-
   factory AuthException.unknown() => const AuthException(
     'Что-то пошло не так',
     type: AuthErrorType.unknown,

@@ -26,6 +26,8 @@ dependencies:
   firebase_auth: ^6.3.0
   get_it: ^9.2.1
   cloud_firestore: ^6.2.0
+  dio: ^5.9.2
+  pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
 
