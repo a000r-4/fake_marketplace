@@ -5,8 +5,13 @@ import 'package:auth_template/features/auth/presentation/pages/home_page.dart';
 import 'package:auth_template/features/auth/presentation/pages/login.dart';
 import 'package:auth_template/features/auth/presentation/pages/phone_page.dart';
 import 'package:auth_template/features/auth/presentation/pages/profile_page.dart';
+import 'package:auth_template/features/catalog/presentation/pages/catalog_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../core/di/init_dependencies.dart';
+import '../../features/catalog/presentation/catalog_cubit/catalog_cubit.dart';
 
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
@@ -47,9 +52,9 @@ GoRouter createRouter(AuthCubit authCubit) {
         },
 
         authenticated: (_) {
-          final bool isOnMapTab = state.matchedLocation.startsWith('/home');
+          final bool isOnMapTab = state.matchedLocation.startsWith('/catalog');
           if (!isOnMapTab) {
-            return '/home';
+            return '/catalog';
           }
           return null;
         },
@@ -73,14 +78,16 @@ GoRouter createRouter(AuthCubit authCubit) {
         PhonePage()
       ),
       GoRoute(
-        path: '/home/profile',
+        path: '/catalog/profile',
         builder: (context, state) =>
         ProfilePage()
       ),
       GoRoute(
-        path: '/home',
-        builder: (context, state) =>
-        HomePage()
+        path: '/catalog',
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<CatalogCubit>()..loadProducts(),
+          child: const CatalogPage(),
+        ),
       ),
     ],
   );

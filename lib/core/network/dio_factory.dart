@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
 class DioFactory {
   static const String _baseUrl = 'https://fakestoreapi.com';
-
   Dio create() {
     final dio = Dio(
       BaseOptions(
@@ -16,7 +14,6 @@ class DioFactory {
         },
       ),
     );
-
     dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,
@@ -26,7 +23,6 @@ class DioFactory {
         compact: true,
       ),
     );
-
     return dio;
   }
 }
