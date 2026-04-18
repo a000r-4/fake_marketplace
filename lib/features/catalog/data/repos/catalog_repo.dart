@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 
 import '../../../../core/exceptions/server_exceptions.dart';
-import '../../domain/entity/product_entity.dart';
+import '../../domain/entity/product_enitity/product_entity.dart';
 import '../datasource/product_remote_data_soucre.dart';
 import '../model/product_model.dart';
 

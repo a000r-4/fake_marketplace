@@ -11,6 +11,7 @@ import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/catalog/data/datasource/product_remote_data_soucre.dart';
 import '../../features/catalog/data/repos/catalog_repo.dart';
+import '../../features/catalog/presentation/cart_cubit/cart_cubit.dart';
 import '../network/dio_factory.dart';
 final  getIt  = GetIt.instance;
 Future<void> initDependencies () async {
@@ -41,4 +42,5 @@ Future<void> initDependencies () async {
   getIt.registerFactory<AuthCubit>(
         () => AuthCubit(getIt<AuthRepo>()),
   );
+  getIt.registerLazySingleton(() => CartCubit());
 }

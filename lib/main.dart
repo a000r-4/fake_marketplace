@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/di/init_dependencies.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
+import 'features/catalog/presentation/cart_cubit/cart_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +20,7 @@ void main() async {
   await initDependencies();
 
   final authCubit = getIt<AuthCubit>();
+  final cartCubit = getIt<CartCubit>();
   final authBloc = getIt<AuthBloc>();
   final router = createRouter(authCubit);
 
@@ -26,6 +28,7 @@ void main() async {
     providers: [
       BlocProvider<AuthCubit>.value(value: authCubit,),
       BlocProvider<AuthBloc>.value(value: authBloc,),
+      BlocProvider<CartCubit>.value(value: cartCubit,),
     ],
     child: MyApp(
       router: router,

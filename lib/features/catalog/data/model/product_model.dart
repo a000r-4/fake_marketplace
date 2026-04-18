@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../domain/entity/product_entity.dart';
+import '../../domain/entity/product_enitity/product_entity.dart';
 
 part 'product_model.freezed.dart';
 part 'product_model.g.dart'; // Появится после запуска build_runner
