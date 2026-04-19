@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/connectivity_cubit/cunectivity_cubit.dart';
 import '../catalog_cubit/catalog_cubit.dart';
 
 class CatalogPage extends StatelessWidget {
@@ -54,9 +55,23 @@ class CatalogPage extends StatelessWidget {
           ),
 
           // Основной контент
-          Expanded(
-            child: BlocBuilder<CatalogCubit, CatalogState>(
-              builder: (context, state) {
+      Expanded(
+        child: BlocListener<ConnectivityCubit, bool>(
+          listener: (context, hasConnection) {
+            // Если интернет появился
+            if (hasConnection) {
+              final state = context.read<CatalogCubit>().state;
+
+              // Если сейчас ошибка или данных еще нет - пробуем загрузить снова
+              state.maybeWhen(
+                error: (_) => context.read<CatalogCubit>().loadProducts(),
+                initial: () => context.read<CatalogCubit>().loadProducts(),
+                orElse: () {},
+              );
+            }
+          },
+          child: BlocBuilder<CatalogCubit, CatalogState>(
+            builder: (context, state) {
                 return state.when(
                   initial: () => const SizedBox.shrink(),
                   loading: () => _buildSkeletonGrid(),
@@ -81,7 +96,7 @@ class CatalogPage extends StatelessWidget {
               },
             ),
           ),
-        ],
+      )],
       ),
     );
   }

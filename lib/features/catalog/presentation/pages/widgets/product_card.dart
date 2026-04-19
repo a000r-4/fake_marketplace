@@ -1,4 +1,5 @@
 import 'package:auth_template/features/catalog/presentation/cart_cubit/cart_cubit.dart';
+import 'package:auth_template/features/catalog/presentation/pages/widgets/product_skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,29 +33,22 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Блок с картинкой
+// Внутри ProductCard в блоке с картинкой:
             Expanded(
               flex: 3,
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 color: Colors.white,
-                child: Hero( // Добавляем Hero для анимации перехода
-                  tag: 'product_image_${product.id}',
-                  child: CachedNetworkImage(
-                    imageUrl: product.image,
-                    fit: BoxFit.contain,
-                    placeholder: (context, url) => Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: theme.colorScheme.primary.withOpacity(0.3),
-                      ),
-                    ),
-                    errorWidget: (context, url, error) => const Center(
-                      child: Icon(
-                        Icons.broken_image_outlined,
-                        color: Colors.grey,
-                        size: 40,
-                      ),
+                child: CachedNetworkImage( // БЕЗ Hero
+                  imageUrl: product.image,
+                  fit: BoxFit.contain,
+                  placeholder: (context, url) => const ProductSkeleton(), // Наш скелетон
+                  errorWidget: (context, url, error) => const Center(
+                    child: Icon(
+                      Icons.broken_image_outlined,
+                      color: Colors.grey,
+                      size: 40,
                     ),
                   ),
                 ),

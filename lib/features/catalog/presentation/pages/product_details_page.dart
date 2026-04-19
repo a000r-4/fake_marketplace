@@ -1,3 +1,4 @@
+import 'package:auth_template/features/catalog/presentation/pages/widgets/product_skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,11 +29,16 @@ class ProductDetailsPage extends StatelessWidget {
               height: 300,
               color: Colors.white,
               padding: const EdgeInsets.all(24),
-              child: Hero(
-                tag: 'product_${product.id}', // Для плавной анимации перехода
-                child: CachedNetworkImage(
-                  imageUrl: product.image,
-                  fit: BoxFit.contain,
+              child: CachedNetworkImage( // БЕЗ Hero
+                imageUrl: product.image,
+                fit: BoxFit.contain,
+                placeholder: (context, url) => const ProductSkeleton(), // Тот же скелетон
+                errorWidget: (context, url, error) => const Center(
+                  child: Icon(
+                    Icons.broken_image_outlined,
+                    color: Colors.grey,
+                    size: 80,
+                  ),
                 ),
               ),
             ),

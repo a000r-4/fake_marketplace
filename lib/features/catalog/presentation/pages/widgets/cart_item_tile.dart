@@ -1,3 +1,4 @@
+import 'package:auth_template/features/catalog/presentation/pages/widgets/product_skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +9,7 @@ import '../../cart_cubit/cart_cubit.dart';
 class CartItemTile extends StatelessWidget {
   final CartItemEntity item;
 
-  const CartItemTile({required this.item});
+  const CartItemTile({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +21,13 @@ class CartItemTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: theme.colorScheme.outlineVariant.withOpacity(0.5)),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withOpacity(0.5),
+        ),
       ),
       child: Row(
         children: [
-          // Миниатюра товара
+          // Миниатюра товара со скелетоном
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Container(
@@ -34,6 +37,11 @@ class CartItemTile extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: item.product.image,
                 fit: BoxFit.contain,
+                // Используем тот же скелетон, что в каталоге и деталях
+                placeholder: (context, url) => const ProductSkeleton(),
+                errorWidget: (context, url, error) => const Center(
+                  child: Icon(Icons.broken_image_outlined, color: Colors.grey),
+                ),
               ),
             ),
           ),
@@ -48,11 +56,13 @@ class CartItemTile extends StatelessWidget {
                   item.product.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  '${item.product.price} \$',
+                  '${item.product.price.toStringAsFixed(2)} \$',
                   style: TextStyle(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,
@@ -92,7 +102,6 @@ class CartItemTile extends StatelessWidget {
   }
 }
 
-// Маленькая вспомогательная кнопка для +/-
 class _QtyButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
