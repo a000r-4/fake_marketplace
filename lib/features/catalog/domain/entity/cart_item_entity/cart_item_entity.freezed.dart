@@ -12,17 +12,16 @@ part of 'cart_item_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CartItemEntity {
+  @HiveField(0)
   ProductEntity get product => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get quantity => throw _privateConstructorUsedError;
 
-  /// Create a copy of CartItemEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CartItemEntityCopyWith<CartItemEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -30,11 +29,10 @@ mixin _$CartItemEntity {
 /// @nodoc
 abstract class $CartItemEntityCopyWith<$Res> {
   factory $CartItemEntityCopyWith(
-    CartItemEntity value,
-    $Res Function(CartItemEntity) then,
-  ) = _$CartItemEntityCopyWithImpl<$Res, CartItemEntity>;
+          CartItemEntity value, $Res Function(CartItemEntity) then) =
+      _$CartItemEntityCopyWithImpl<$Res, CartItemEntity>;
   @useResult
-  $Res call({ProductEntity product, int quantity});
+  $Res call({@HiveField(0) ProductEntity product, @HiveField(1) int quantity});
 
   $ProductEntityCopyWith<$Res> get product;
 }
@@ -49,28 +47,24 @@ class _$CartItemEntityCopyWithImpl<$Res, $Val extends CartItemEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CartItemEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? product = null, Object? quantity = null}) {
-    return _then(
-      _value.copyWith(
-            product: null == product
-                ? _value.product
-                : product // ignore: cast_nullable_to_non_nullable
-                      as ProductEntity,
-            quantity: null == quantity
-                ? _value.quantity
-                : quantity // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? product = null,
+    Object? quantity = null,
+  }) {
+    return _then(_value.copyWith(
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductEntity,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
   }
 
-  /// Create a copy of CartItemEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductEntityCopyWith<$Res> get product {
@@ -83,13 +77,12 @@ class _$CartItemEntityCopyWithImpl<$Res, $Val extends CartItemEntity>
 /// @nodoc
 abstract class _$$CartItemEntityImplCopyWith<$Res>
     implements $CartItemEntityCopyWith<$Res> {
-  factory _$$CartItemEntityImplCopyWith(
-    _$CartItemEntityImpl value,
-    $Res Function(_$CartItemEntityImpl) then,
-  ) = __$$CartItemEntityImplCopyWithImpl<$Res>;
+  factory _$$CartItemEntityImplCopyWith(_$CartItemEntityImpl value,
+          $Res Function(_$CartItemEntityImpl) then) =
+      __$$CartItemEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ProductEntity product, int quantity});
+  $Res call({@HiveField(0) ProductEntity product, @HiveField(1) int quantity});
 
   @override
   $ProductEntityCopyWith<$Res> get product;
@@ -100,38 +93,41 @@ class __$$CartItemEntityImplCopyWithImpl<$Res>
     extends _$CartItemEntityCopyWithImpl<$Res, _$CartItemEntityImpl>
     implements _$$CartItemEntityImplCopyWith<$Res> {
   __$$CartItemEntityImplCopyWithImpl(
-    _$CartItemEntityImpl _value,
-    $Res Function(_$CartItemEntityImpl) _then,
-  ) : super(_value, _then);
+      _$CartItemEntityImpl _value, $Res Function(_$CartItemEntityImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of CartItemEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? product = null, Object? quantity = null}) {
-    return _then(
-      _$CartItemEntityImpl(
-        product: null == product
-            ? _value.product
-            : product // ignore: cast_nullable_to_non_nullable
-                  as ProductEntity,
-        quantity: null == quantity
-            ? _value.quantity
-            : quantity // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? product = null,
+    Object? quantity = null,
+  }) {
+    return _then(_$CartItemEntityImpl(
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductEntity,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
 /// @nodoc
 
+@HiveType(typeId: 1)
 class _$CartItemEntityImpl implements _CartItemEntity {
-  const _$CartItemEntityImpl({required this.product, required this.quantity});
+  const _$CartItemEntityImpl(
+      {@HiveField(0) required this.product,
+      @HiveField(1) required this.quantity});
 
   @override
+  @HiveField(0)
   final ProductEntity product;
   @override
+  @HiveField(1)
   final int quantity;
 
   @override
@@ -152,33 +148,27 @@ class _$CartItemEntityImpl implements _CartItemEntity {
   @override
   int get hashCode => Object.hash(runtimeType, product, quantity);
 
-  /// Create a copy of CartItemEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CartItemEntityImplCopyWith<_$CartItemEntityImpl> get copyWith =>
       __$$CartItemEntityImplCopyWithImpl<_$CartItemEntityImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 }
 
 abstract class _CartItemEntity implements CartItemEntity {
-  const factory _CartItemEntity({
-    required final ProductEntity product,
-    required final int quantity,
-  }) = _$CartItemEntityImpl;
+  const factory _CartItemEntity(
+      {@HiveField(0) required final ProductEntity product,
+      @HiveField(1) required final int quantity}) = _$CartItemEntityImpl;
 
   @override
+  @HiveField(0)
   ProductEntity get product;
   @override
+  @HiveField(1)
   int get quantity;
-
-  /// Create a copy of CartItemEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CartItemEntityImplCopyWith<_$CartItemEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

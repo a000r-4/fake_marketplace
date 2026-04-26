@@ -60,7 +60,9 @@ class CartPage extends StatelessWidget {
                       const SizedBox(width: 20),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<CartCubit>().checkout();
+                          },
                           child: const Text('Оформить заказ'),
                         ),
                       ),

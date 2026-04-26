@@ -12,8 +12,7 @@ part of 'user_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserEntity {
@@ -26,9 +25,7 @@ mixin _$UserEntity {
   String? get photoUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $UserEntityCopyWith<UserEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -36,20 +33,18 @@ mixin _$UserEntity {
 /// @nodoc
 abstract class $UserEntityCopyWith<$Res> {
   factory $UserEntityCopyWith(
-    UserEntity value,
-    $Res Function(UserEntity) then,
-  ) = _$UserEntityCopyWithImpl<$Res, UserEntity>;
+          UserEntity value, $Res Function(UserEntity) then) =
+      _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
-  $Res call({
-    String id,
-    String? email,
-    String? phoneNumber,
-    bool isEmailVerified,
-    bool isPhoneVerified,
-    String? displayName,
-    String? photoUrl,
-    DateTime createdAt,
-  });
+  $Res call(
+      {String id,
+      String? email,
+      String? phoneNumber,
+      bool isEmailVerified,
+      bool isPhoneVerified,
+      String? displayName,
+      String? photoUrl,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -62,8 +57,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UserEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,43 +69,40 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? photoUrl = freezed,
     Object? createdAt = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            email: freezed == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            phoneNumber: freezed == phoneNumber
-                ? _value.phoneNumber
-                : phoneNumber // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            isEmailVerified: null == isEmailVerified
-                ? _value.isEmailVerified
-                : isEmailVerified // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isPhoneVerified: null == isPhoneVerified
-                ? _value.isPhoneVerified
-                : isPhoneVerified // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            displayName: freezed == displayName
-                ? _value.displayName
-                : displayName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            photoUrl: freezed == photoUrl
-                ? _value.photoUrl
-                : photoUrl // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdAt: null == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPhoneVerified: null == isPhoneVerified
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
   }
 }
 
@@ -120,21 +110,19 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
 abstract class _$$UserEntityImplCopyWith<$Res>
     implements $UserEntityCopyWith<$Res> {
   factory _$$UserEntityImplCopyWith(
-    _$UserEntityImpl value,
-    $Res Function(_$UserEntityImpl) then,
-  ) = __$$UserEntityImplCopyWithImpl<$Res>;
+          _$UserEntityImpl value, $Res Function(_$UserEntityImpl) then) =
+      __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String? email,
-    String? phoneNumber,
-    bool isEmailVerified,
-    bool isPhoneVerified,
-    String? displayName,
-    String? photoUrl,
-    DateTime createdAt,
-  });
+  $Res call(
+      {String id,
+      String? email,
+      String? phoneNumber,
+      bool isEmailVerified,
+      bool isPhoneVerified,
+      String? displayName,
+      String? photoUrl,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -142,12 +130,9 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     extends _$UserEntityCopyWithImpl<$Res, _$UserEntityImpl>
     implements _$$UserEntityImplCopyWith<$Res> {
   __$$UserEntityImplCopyWithImpl(
-    _$UserEntityImpl _value,
-    $Res Function(_$UserEntityImpl) _then,
-  ) : super(_value, _then);
+      _$UserEntityImpl _value, $Res Function(_$UserEntityImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of UserEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,58 +145,55 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? photoUrl = freezed,
     Object? createdAt = null,
   }) {
-    return _then(
-      _$UserEntityImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        email: freezed == email
-            ? _value.email
-            : email // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        phoneNumber: freezed == phoneNumber
-            ? _value.phoneNumber
-            : phoneNumber // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        isEmailVerified: null == isEmailVerified
-            ? _value.isEmailVerified
-            : isEmailVerified // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        isPhoneVerified: null == isPhoneVerified
-            ? _value.isPhoneVerified
-            : isPhoneVerified // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        displayName: freezed == displayName
-            ? _value.displayName
-            : displayName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        photoUrl: freezed == photoUrl
-            ? _value.photoUrl
-            : photoUrl // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdAt: null == createdAt
-            ? _value.createdAt
-            : createdAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-      ),
-    );
+    return _then(_$UserEntityImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPhoneVerified: null == isPhoneVerified
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$UserEntityImpl implements _UserEntity {
-  const _$UserEntityImpl({
-    required this.id,
-    this.email,
-    this.phoneNumber,
-    required this.isEmailVerified,
-    required this.isPhoneVerified,
-    this.displayName,
-    this.photoUrl,
-    required this.createdAt,
-  });
+  const _$UserEntityImpl(
+      {required this.id,
+      this.email,
+      this.phoneNumber,
+      required this.isEmailVerified,
+      required this.isPhoneVerified,
+      this.displayName,
+      this.photoUrl,
+      required this.createdAt});
 
   @override
   final String id;
@@ -257,21 +239,10 @@ class _$UserEntityImpl implements _UserEntity {
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    email,
-    phoneNumber,
-    isEmailVerified,
-    isPhoneVerified,
-    displayName,
-    photoUrl,
-    createdAt,
-  );
+  int get hashCode => Object.hash(runtimeType, id, email, phoneNumber,
+      isEmailVerified, isPhoneVerified, displayName, photoUrl, createdAt);
 
-  /// Create a copy of UserEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
@@ -279,16 +250,15 @@ class _$UserEntityImpl implements _UserEntity {
 }
 
 abstract class _UserEntity implements UserEntity {
-  const factory _UserEntity({
-    required final String id,
-    final String? email,
-    final String? phoneNumber,
-    required final bool isEmailVerified,
-    required final bool isPhoneVerified,
-    final String? displayName,
-    final String? photoUrl,
-    required final DateTime createdAt,
-  }) = _$UserEntityImpl;
+  const factory _UserEntity(
+      {required final String id,
+      final String? email,
+      final String? phoneNumber,
+      required final bool isEmailVerified,
+      required final bool isPhoneVerified,
+      final String? displayName,
+      final String? photoUrl,
+      required final DateTime createdAt}) = _$UserEntityImpl;
 
   @override
   String get id;
@@ -306,11 +276,8 @@ abstract class _UserEntity implements UserEntity {
   String? get photoUrl;
   @override
   DateTime get createdAt;
-
-  /// Create a copy of UserEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

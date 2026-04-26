@@ -12,8 +12,7 @@ part of 'user_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {
   return _UserModel.fromJson(json);
@@ -30,12 +29,8 @@ mixin _$UserModel {
   String? get photoUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
-  /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $UserModelCopyWith<UserModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,16 +40,15 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({
-    String id,
-    String? email,
-    String? phoneNumber,
-    bool isEmailVerified,
-    bool isPhoneVerified,
-    String? displayName,
-    String? photoUrl,
-    DateTime createdAt,
-  });
+  $Res call(
+      {String id,
+      String? email,
+      String? phoneNumber,
+      bool isEmailVerified,
+      bool isPhoneVerified,
+      String? displayName,
+      String? photoUrl,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -67,8 +61,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,43 +73,40 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? photoUrl = freezed,
     Object? createdAt = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            email: freezed == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            phoneNumber: freezed == phoneNumber
-                ? _value.phoneNumber
-                : phoneNumber // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            isEmailVerified: null == isEmailVerified
-                ? _value.isEmailVerified
-                : isEmailVerified // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isPhoneVerified: null == isPhoneVerified
-                ? _value.isPhoneVerified
-                : isPhoneVerified // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            displayName: freezed == displayName
-                ? _value.displayName
-                : displayName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            photoUrl: freezed == photoUrl
-                ? _value.photoUrl
-                : photoUrl // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdAt: null == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPhoneVerified: null == isPhoneVerified
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
   }
 }
 
@@ -125,21 +114,19 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
 abstract class _$$UserModelImplCopyWith<$Res>
     implements $UserModelCopyWith<$Res> {
   factory _$$UserModelImplCopyWith(
-    _$UserModelImpl value,
-    $Res Function(_$UserModelImpl) then,
-  ) = __$$UserModelImplCopyWithImpl<$Res>;
+          _$UserModelImpl value, $Res Function(_$UserModelImpl) then) =
+      __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String? email,
-    String? phoneNumber,
-    bool isEmailVerified,
-    bool isPhoneVerified,
-    String? displayName,
-    String? photoUrl,
-    DateTime createdAt,
-  });
+  $Res call(
+      {String id,
+      String? email,
+      String? phoneNumber,
+      bool isEmailVerified,
+      bool isPhoneVerified,
+      String? displayName,
+      String? photoUrl,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -147,12 +134,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
     extends _$UserModelCopyWithImpl<$Res, _$UserModelImpl>
     implements _$$UserModelImplCopyWith<$Res> {
   __$$UserModelImplCopyWithImpl(
-    _$UserModelImpl _value,
-    $Res Function(_$UserModelImpl) _then,
-  ) : super(_value, _then);
+      _$UserModelImpl _value, $Res Function(_$UserModelImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,58 +149,56 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? photoUrl = freezed,
     Object? createdAt = null,
   }) {
-    return _then(
-      _$UserModelImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        email: freezed == email
-            ? _value.email
-            : email // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        phoneNumber: freezed == phoneNumber
-            ? _value.phoneNumber
-            : phoneNumber // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        isEmailVerified: null == isEmailVerified
-            ? _value.isEmailVerified
-            : isEmailVerified // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        isPhoneVerified: null == isPhoneVerified
-            ? _value.isPhoneVerified
-            : isPhoneVerified // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        displayName: freezed == displayName
-            ? _value.displayName
-            : displayName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        photoUrl: freezed == photoUrl
-            ? _value.photoUrl
-            : photoUrl // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdAt: null == createdAt
-            ? _value.createdAt
-            : createdAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-      ),
-    );
+    return _then(_$UserModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPhoneVerified: null == isPhoneVerified
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$UserModelImpl extends _UserModel {
-  const _$UserModelImpl({
-    required this.id,
-    this.email,
-    this.phoneNumber,
-    required this.isEmailVerified,
-    required this.isPhoneVerified,
-    this.displayName,
-    this.photoUrl,
-    required this.createdAt,
-  }) : super._();
+  const _$UserModelImpl(
+      {required this.id,
+      this.email,
+      this.phoneNumber,
+      required this.isEmailVerified,
+      required this.isPhoneVerified,
+      this.displayName,
+      this.photoUrl,
+      required this.createdAt})
+      : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -264,23 +246,12 @@ class _$UserModelImpl extends _UserModel {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    email,
-    phoneNumber,
-    isEmailVerified,
-    isPhoneVerified,
-    displayName,
-    photoUrl,
-    createdAt,
-  );
+  int get hashCode => Object.hash(runtimeType, id, email, phoneNumber,
+      isEmailVerified, isPhoneVerified, displayName, photoUrl, createdAt);
 
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>
@@ -288,21 +259,22 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserModelImplToJson(this);
+    return _$$UserModelImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _UserModel extends UserModel {
-  const factory _UserModel({
-    required final String id,
-    final String? email,
-    final String? phoneNumber,
-    required final bool isEmailVerified,
-    required final bool isPhoneVerified,
-    final String? displayName,
-    final String? photoUrl,
-    required final DateTime createdAt,
-  }) = _$UserModelImpl;
+  const factory _UserModel(
+      {required final String id,
+      final String? email,
+      final String? phoneNumber,
+      required final bool isEmailVerified,
+      required final bool isPhoneVerified,
+      final String? displayName,
+      final String? photoUrl,
+      required final DateTime createdAt}) = _$UserModelImpl;
   const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -324,11 +296,8 @@ abstract class _UserModel extends UserModel {
   String? get photoUrl;
   @override
   DateTime get createdAt;
-
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

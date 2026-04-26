@@ -1,8 +1,6 @@
-import 'package:auth_template/features/catalog/presentation/cart_cubit/cart_cubit.dart';
 import 'package:auth_template/features/catalog/presentation/pages/widgets/product_skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../domain/entity/product_enitity/product_entity.dart';
 
@@ -22,47 +20,31 @@ class ProductCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(color: theme.colorScheme.outlineVariant.withOpacity(0.5)),
       ),
-      child: InkWell( // Добавляем обработку нажатия на всю карточку
-        onTap: () {
-          context.pushNamed(
-            'product-details',
-            extra: product,
-          );
-        },
+      child: InkWell(
+        onTap: () => context.pushNamed('product-details', extra: product),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Блок с картинкой
-// Внутри ProductCard в блоке с картинкой:
             Expanded(
               flex: 3,
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
-                color: Colors.white,
-                child: CachedNetworkImage( // БЕЗ Hero
+                child: CachedNetworkImage(
                   imageUrl: product.image,
                   fit: BoxFit.contain,
-                  placeholder: (context, url) => const ProductSkeleton(), // Наш скелетон
-                  errorWidget: (context, url, error) => const Center(
-                    child: Icon(
-                      Icons.broken_image_outlined,
-                      color: Colors.grey,
-                      size: 40,
-                    ),
-                  ),
+                  placeholder: (context, url) => const ProductSkeleton(),
+                  errorWidget: (context, url, error) => const Icon(Icons.broken_image_outlined, color: Colors.grey),
                 ),
               ),
             ),
 
-            // Блок с текстом
             Expanded(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       product.title,
@@ -70,70 +52,43 @@ class ProductCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.labelLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        height: 1.2,
+                        height: 1.1,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    const Spacer(), // Прижимает цену/рейтинг к низу
+
+                    Wrap(
+                      alignment: WrapAlignment.spaceBetween,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 4, // отступ между элементами если они в ряд
+                      runSpacing: 4, // отступ если рейтинг ушел на вторую строку
                       children: [
-                        Text(
-                          '${product.price.toStringAsFixed(2)} \$',
-                          style: TextStyle(
-                            color: theme.colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                        // Цена с защитой от переполнения
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            '${product.price.toStringAsFixed(2)} \$',
+                            style: TextStyle(
+                              color: theme.colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
+
+                        // Группа рейтинга
                         Row(
-                          mainAxisSize: MainAxisSize.min, // Чтобы вложенный Row не растягивался
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              product.rating.toStringAsFixed(2),
-                              style: TextStyle(
-                                color: theme.colorScheme.primary,
+                              product.rating.toStringAsFixed(1),
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                                fontSize: 13,
                               ),
                             ),
-                            const SizedBox(width: 2), // Небольшой отступ между текстом и иконкой
-                            Icon(
-                              Icons.star_half,
-                              size: 20,
-                              color: theme.colorScheme.primary,
-                            ),
+                            const Icon(Icons.star, size: 14, color: Colors.amber),
                           ],
-                        ),
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              context.read<CartCubit>().addToCart(product);
-                              ScaffoldMessenger.of(context).hideCurrentSnackBar(); // Убираем предыдущий, если он есть
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('"${product.title}" добавлен в корзину'),
-                                  duration: const Duration(seconds: 3), // Увеличим время, чтобы успеть нажать
-                                  backgroundColor: theme.colorScheme.primary,
-                                  action: SnackBarAction(
-                                    label: 'В КОРЗИНУ',
-                                    textColor: Colors.white,
-                                    onPressed: () {
-                                      context.pushNamed('cart');
-                                    },
-                                  ),
-                                ),
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(20),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Icon(
-                                Icons.add_shopping_cart,
-                                size: 20,
-                                color: theme.colorScheme.primary,
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     ),

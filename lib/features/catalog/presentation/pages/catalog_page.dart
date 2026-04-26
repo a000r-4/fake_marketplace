@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/connectivity_cubit/cunectivity_cubit.dart';
+import '../../../../core/connectivity_cubit/connectivity_cubit.dart';
 import '../catalog_cubit/catalog_cubit.dart';
 
 class CatalogPage extends StatelessWidget {
@@ -17,10 +17,6 @@ class CatalogPage extends StatelessWidget {
     final categories = ['Все', 'electronics', 'jewelery', "men's clothing", "women's clothing"];
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.pushNamed('cart'),
-        child: const Icon(Icons.shopping_cart_outlined),
-      ),
       appBar: AppBar(
         // Вместо Title вставляем TextField
         title: TextField(
