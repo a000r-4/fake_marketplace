@@ -13,6 +13,9 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   AuthBloc(this._repo) : super(const AuthBlocState.initial()) {
     on<AuthBlocEvent>((event, emit) async {
       await event.map(
+        deleteAccount: (e) => _handleAuthTask(emit,
+                () => _repo.deleteAccount()
+        ),
         signInWithEmail: (e) => _handleAuthTask(emit,
               () => _repo.signInWithEmail(e.email, e.password),
         ),

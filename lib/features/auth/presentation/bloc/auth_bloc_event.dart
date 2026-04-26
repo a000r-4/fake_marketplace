@@ -21,4 +21,6 @@ class AuthBlocEvent with _$AuthBlocEvent {
     String? displayName,
     String? photoUrl,
   }) = _UpdateProfile;
+
+  const factory AuthBlocEvent.deleteAccount() = _DeleteAccount;
 }

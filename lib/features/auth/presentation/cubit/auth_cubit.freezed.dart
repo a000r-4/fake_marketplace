@@ -12,8 +12,7 @@ part of 'auth_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AuthCubitState {
@@ -22,47 +21,52 @@ mixin _$AuthCubitState {
     required TResult Function() initial,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function() unauthenticated,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function()? unauthenticated,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UserEntity user)? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthCubitInitial value) initial,
     required TResult Function(_AuthCubitAuthenticated value) authenticated,
     required TResult Function(_AuthCubitUnauthenticated value) unauthenticated,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthCubitInitial value)? initial,
     TResult? Function(_AuthCubitAuthenticated value)? authenticated,
     TResult? Function(_AuthCubitUnauthenticated value)? unauthenticated,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthCubitInitial value)? initial,
     TResult Function(_AuthCubitAuthenticated value)? authenticated,
     TResult Function(_AuthCubitUnauthenticated value)? unauthenticated,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthCubitStateCopyWith<$Res> {
   factory $AuthCubitStateCopyWith(
-    AuthCubitState value,
-    $Res Function(AuthCubitState) then,
-  ) = _$AuthCubitStateCopyWithImpl<$Res, AuthCubitState>;
+          AuthCubitState value, $Res Function(AuthCubitState) then) =
+      _$AuthCubitStateCopyWithImpl<$Res, AuthCubitState>;
 }
 
 /// @nodoc
@@ -74,30 +78,22 @@ class _$AuthCubitStateCopyWithImpl<$Res, $Val extends AuthCubitState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of AuthCubitState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$AuthCubitInitialImplCopyWith<$Res> {
-  factory _$$AuthCubitInitialImplCopyWith(
-    _$AuthCubitInitialImpl value,
-    $Res Function(_$AuthCubitInitialImpl) then,
-  ) = __$$AuthCubitInitialImplCopyWithImpl<$Res>;
+  factory _$$AuthCubitInitialImplCopyWith(_$AuthCubitInitialImpl value,
+          $Res Function(_$AuthCubitInitialImpl) then) =
+      __$$AuthCubitInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$AuthCubitInitialImplCopyWithImpl<$Res>
     extends _$AuthCubitStateCopyWithImpl<$Res, _$AuthCubitInitialImpl>
     implements _$$AuthCubitInitialImplCopyWith<$Res> {
-  __$$AuthCubitInitialImplCopyWithImpl(
-    _$AuthCubitInitialImpl _value,
-    $Res Function(_$AuthCubitInitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of AuthCubitState
-  /// with the given fields replaced by the non-null parameter values.
+  __$$AuthCubitInitialImplCopyWithImpl(_$AuthCubitInitialImpl _value,
+      $Res Function(_$AuthCubitInitialImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -195,9 +191,9 @@ abstract class _AuthCubitInitial implements AuthCubitState {
 /// @nodoc
 abstract class _$$AuthCubitAuthenticatedImplCopyWith<$Res> {
   factory _$$AuthCubitAuthenticatedImplCopyWith(
-    _$AuthCubitAuthenticatedImpl value,
-    $Res Function(_$AuthCubitAuthenticatedImpl) then,
-  ) = __$$AuthCubitAuthenticatedImplCopyWithImpl<$Res>;
+          _$AuthCubitAuthenticatedImpl value,
+          $Res Function(_$AuthCubitAuthenticatedImpl) then) =
+      __$$AuthCubitAuthenticatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserEntity user});
 
@@ -209,27 +205,23 @@ class __$$AuthCubitAuthenticatedImplCopyWithImpl<$Res>
     extends _$AuthCubitStateCopyWithImpl<$Res, _$AuthCubitAuthenticatedImpl>
     implements _$$AuthCubitAuthenticatedImplCopyWith<$Res> {
   __$$AuthCubitAuthenticatedImplCopyWithImpl(
-    _$AuthCubitAuthenticatedImpl _value,
-    $Res Function(_$AuthCubitAuthenticatedImpl) _then,
-  ) : super(_value, _then);
+      _$AuthCubitAuthenticatedImpl _value,
+      $Res Function(_$AuthCubitAuthenticatedImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of AuthCubitState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? user = null}) {
-    return _then(
-      _$AuthCubitAuthenticatedImpl(
-        null == user
-            ? _value.user
-            : user // ignore: cast_nullable_to_non_nullable
-                  as UserEntity,
-      ),
-    );
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$AuthCubitAuthenticatedImpl(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserEntity,
+    ));
   }
 
-  /// Create a copy of AuthCubitState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserEntityCopyWith<$Res> get user {
@@ -263,17 +255,12 @@ class _$AuthCubitAuthenticatedImpl implements _AuthCubitAuthenticated {
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  /// Create a copy of AuthCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthCubitAuthenticatedImplCopyWith<_$AuthCubitAuthenticatedImpl>
-  get copyWith =>
-      __$$AuthCubitAuthenticatedImplCopyWithImpl<_$AuthCubitAuthenticatedImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$AuthCubitAuthenticatedImplCopyWithImpl<
+          _$AuthCubitAuthenticatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -349,20 +336,17 @@ abstract class _AuthCubitAuthenticated implements AuthCubitState {
       _$AuthCubitAuthenticatedImpl;
 
   UserEntity get user;
-
-  /// Create a copy of AuthCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AuthCubitAuthenticatedImplCopyWith<_$AuthCubitAuthenticatedImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$AuthCubitUnauthenticatedImplCopyWith<$Res> {
   factory _$$AuthCubitUnauthenticatedImplCopyWith(
-    _$AuthCubitUnauthenticatedImpl value,
-    $Res Function(_$AuthCubitUnauthenticatedImpl) then,
-  ) = __$$AuthCubitUnauthenticatedImplCopyWithImpl<$Res>;
+          _$AuthCubitUnauthenticatedImpl value,
+          $Res Function(_$AuthCubitUnauthenticatedImpl) then) =
+      __$$AuthCubitUnauthenticatedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -370,12 +354,9 @@ class __$$AuthCubitUnauthenticatedImplCopyWithImpl<$Res>
     extends _$AuthCubitStateCopyWithImpl<$Res, _$AuthCubitUnauthenticatedImpl>
     implements _$$AuthCubitUnauthenticatedImplCopyWith<$Res> {
   __$$AuthCubitUnauthenticatedImplCopyWithImpl(
-    _$AuthCubitUnauthenticatedImpl _value,
-    $Res Function(_$AuthCubitUnauthenticatedImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of AuthCubitState
-  /// with the given fields replaced by the non-null parameter values.
+      _$AuthCubitUnauthenticatedImpl _value,
+      $Res Function(_$AuthCubitUnauthenticatedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
