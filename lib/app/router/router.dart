@@ -11,12 +11,8 @@ import 'package:auth_template/features/catalog/presentation/pages/product_detail
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../core/di/init_dependencies.dart';
-import '../../features/catalog/domain/entity/cart_item_entity/cart_item_entity.dart';
 import '../../features/catalog/domain/entity/product_enitity/product_entity.dart';
 import '../../features/catalog/presentation/cart_cubit/cart_cubit.dart';
-import '../../features/catalog/presentation/catalog_cubit/catalog_cubit.dart';
 import '../../features/catalog/presentation/pages/product_cart_page.dart';
 
 class GoRouterRefreshStream extends ChangeNotifier {
@@ -37,7 +33,7 @@ class GoRouterRefreshStream extends ChangeNotifier {
 
 GoRouter createRouter(AuthCubit authCubit) {
   return GoRouter(
-    initialLocation: '/catalog', // Поменяли на основной экран после логина
+    initialLocation: '/catalog',
     refreshListenable: GoRouterRefreshStream(authCubit.stream),
     redirect: (context, state) {
       final authState = authCubit.state;
@@ -48,7 +44,6 @@ GoRouter createRouter(AuthCubit authCubit) {
         initial: () => isSplash ? null : '/splash',
         unauthenticated: () => isAuthPage ? null : '/login',
         authenticated: (_) {
-          // Если пользователь авторизован и пытается зайти на логин или сплеш — редирект на каталог
           if (isAuthPage || isSplash) return '/catalog';
           return null;
         },
@@ -66,7 +61,7 @@ GoRouter createRouter(AuthCubit authCubit) {
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return Scaffold(
-            body: navigationShell, // Это "окно", где меняются экраны
+            body: navigationShell,
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: navigationShell.currentIndex,
               onTap: (index) => navigationShell.goBranch(index),
@@ -74,11 +69,16 @@ GoRouter createRouter(AuthCubit authCubit) {
                 const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Каталог'),
                 const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
                 BottomNavigationBarItem(
-                  icon: BlocBuilder<CartCubit, List<CartItemEntity>>(
+                  // ИСПРАВЛЕНО: Работаем с CartState вместо List
+                  icon: BlocBuilder<CartCubit, CartState>(
                     builder: (context, state) {
+                      final count = state.maybeWhen(
+                        success: (items, _) => items.length,
+                        orElse: () => 0,
+                      );
                       return Badge(
-                        label: Text('${state.length}'),
-                        isLabelVisible: state.isNotEmpty,
+                        label: Text('$count'),
+                        isLabelVisible: count > 0,
                         child: const Icon(Icons.shopping_cart),
                       );
                     },
@@ -90,15 +90,15 @@ GoRouter createRouter(AuthCubit authCubit) {
           );
         },
         branches: [
-          // Ветка 1: Каталог и его вложенные экраны
+          // Ветка 1: Каталог
           StatefulShellBranch(
             routes: [
               GoRoute(
                 path: '/catalog',
-                builder: (context, state) => BlocProvider(
-                  create: (context) => getIt<CatalogCubit>()..loadProducts(),
-                  child: const CatalogPage(),
-                ),
+                // ИСПРАВЛЕНО: Убрали BlocProvider отсюда.
+                // Кубит должен инициализироваться глобально в main.dart,
+                // чтобы не терять данные при переключении вкладок.
+                builder: (context, state) => const CatalogPage(),
                 routes: [
                   GoRoute(
                     name: 'product-details',
@@ -116,16 +116,16 @@ GoRouter createRouter(AuthCubit authCubit) {
           StatefulShellBranch(
             routes: [
               GoRoute(
+                path: '/profile',
+                name: 'profile',
+                builder: (context, state) => const ProfilePage(),
                 routes: [
                   GoRoute(
-                    path: '/edit_profile_page',
+                    path: 'edit', // Пути внутри веток лучше делать относительными
                     name: 'profile_edit',
                     builder: (context, state) => const EditProfilePage(),
                   ),
                 ],
-                path: '/profile',
-                name: 'profile',
-                builder: (context, state) => const ProfilePage(),
               ),
             ],
           ),

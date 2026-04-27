@@ -12,42 +12,47 @@ import 'features/catalog/data/model/cart_purchase_model/cart_purchase_model.dart
 import 'features/catalog/domain/entity/cart_item_entity/cart_item_entity.dart';
 import 'features/catalog/domain/entity/product_enitity/product_entity.dart';
 import 'features/catalog/presentation/cart_cubit/cart_cubit.dart';
-
+import 'features/catalog/presentation/catalog_cubit/catalog_cubit.dart';
 void main() async {
+  // 1. Обязательная инициализация биндингов
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await Hive.initFlutter();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
-  // 3. Регистрация адаптеров (ПОРЯДОК ВАЖЕН)
-  // Сначала регистрируем базовые сущности, потом те, что их содержат
-  Hive.registerAdapter(ProductEntityImplAdapter());      // typeId: 0
-  Hive.registerAdapter(CartItemEntityImplAdapter());     // typeId: 1
-  Hive.registerAdapter(PurchaseModelAdapter());      // typeId: 2
+    await Hive.initFlutter();
 
-  // 4. Открытие коробок
-  // Теперь Hive знает, как работать с этими типами
-  await Hive.openBox<CartItemEntity>('cart_box');
-  await Hive.openBox<PurchaseModel>('history_box');
+    Hive.registerAdapter(ProductEntityImplAdapter());
+    Hive.registerAdapter(CartItemEntityImplAdapter());
+    Hive.registerAdapter(PurchaseModelAdapter());
 
-  await initDependencies();
+    await Hive.openBox<CartItemEntity>('cart_box');
+    await Hive.openBox<PurchaseModel>('history_box');
 
-  final authCubit = getIt<AuthCubit>();
-  final cartCubit = getIt<CartCubit>();
-  final authBloc = getIt<AuthBloc>();
-  final router = createRouter(authCubit);
+    await initDependencies();
 
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider<AuthCubit>.value(value: authCubit,),
-      BlocProvider<AuthBloc>.value(value: authBloc,),
-      BlocProvider<CartCubit>.value(value: cartCubit,),
-    ],
-    child: MyApp(
-      router: router,
-    ),
-  ));
+    final authCubit = getIt<AuthCubit>();
+    final cartCubit = getIt<CartCubit>();
+    final authBloc = getIt<AuthBloc>();
 
+    final router = createRouter(authCubit);
+
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthCubit>.value(value: authCubit),
+          BlocProvider<AuthBloc>.value(value: authBloc),
+          BlocProvider<CartCubit>.value(value: cartCubit),
+          BlocProvider<CatalogCubit>(
+            create: (context) => getIt<CatalogCubit>()..loadProducts(),
+          ),
+        ],
+        child: MyApp(router: router),
+      ),
+    );
+  } catch (e) {
+    debugPrint("Критическая ошибка при запуске: $e");
+  }
 }
