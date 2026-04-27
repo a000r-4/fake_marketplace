@@ -48,19 +48,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyClnjkIhQPX5AXLtxzcCEBVgyA1AJJs-qM',
-    appId: '1:274102229310:android:5f0b4d5417231d9d91746f',
-    messagingSenderId: '274102229310',
-    projectId: 'auth-template-70ef5',
-    storageBucket: 'auth-template-70ef5.firebasestorage.app',
+    apiKey: 'AIzaSyCAptSOOsKwNHztdfrrhI_-4s2kUZVRRn0',
+    appId: '1:591443177417:android:ff97cd18f51779ae940218',
+    messagingSenderId: '591443177417',
+    projectId: 'fake-marketplace-900b0',
+    storageBucket: 'fake-marketplace-900b0.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCPOmhUc0yiMlFSM7OqFw08Syb3xlFkkoM',
-    appId: '1:274102229310:ios:420f605602c516fa91746f',
-    messagingSenderId: '274102229310',
-    projectId: 'auth-template-70ef5',
-    storageBucket: 'auth-template-70ef5.firebasestorage.app',
+    apiKey: 'AIzaSyAIJCqfsdNL7_QioMwbk7pPiQlywbByiI0',
+    appId: '1:591443177417:ios:5fa6d987f025cae5940218',
+    messagingSenderId: '591443177417',
+    projectId: 'fake-marketplace-900b0',
+    storageBucket: 'fake-marketplace-900b0.firebasestorage.app',
     iosBundleId: 'com.example.authTemplate',
   );
+
 }

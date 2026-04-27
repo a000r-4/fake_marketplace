@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "274102229310",
-    "project_id": "auth-template-70ef5",
-    "storage_bucket": "auth-template-70ef5.firebasestorage.app"
+    "project_number": "591443177417",
+    "project_id": "fake-marketplace-900b0",
+    "storage_bucket": "fake-marketplace-900b0.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:274102229310:android:5f0b4d5417231d9d91746f",
+        "mobilesdk_app_id": "1:591443177417:android:ff97cd18f51779ae940218",
         "android_client_info": {
           "package_name": "com.example.auth_template"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyClnjkIhQPX5AXLtxzcCEBVgyA1AJJs-qM"
+          "current_key": "AIzaSyCAptSOOsKwNHztdfrrhI_-4s2kUZVRRn0"
         }
       ],
       "services": {
