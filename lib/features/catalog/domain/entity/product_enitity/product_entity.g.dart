@@ -57,3 +57,29 @@ class ProductEntityImplAdapter extends TypeAdapter<_$ProductEntityImpl> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$ProductEntityImpl _$$ProductEntityImplFromJson(Map<String, dynamic> json) =>
+    _$ProductEntityImpl(
+      id: (json['id'] as num).toInt(),
+      title: json['title'] as String,
+      price: (json['price'] as num).toDouble(),
+      description: json['description'] as String,
+      category: json['category'] as String,
+      image: json['image'] as String,
+      rating: (json['rating'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$ProductEntityImplToJson(_$ProductEntityImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'price': instance.price,
+      'description': instance.description,
+      'category': instance.category,
+      'image': instance.image,
+      'rating': instance.rating,
+    };

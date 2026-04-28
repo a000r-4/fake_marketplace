@@ -7,9 +7,11 @@ part 'cart_item_entity.g.dart'; // Добавляем g.dart для Hive
 
 @freezed
 class CartItemEntity with _$CartItemEntity {
+  @JsonSerializable(explicitToJson: true)
   @HiveType(typeId: 1)
   const factory CartItemEntity({
     @HiveField(0) required ProductEntity product,
     @HiveField(1) required int quantity,
   }) = _CartItemEntity;
+  factory CartItemEntity.fromJson(Map<String, dynamic> json) => _$CartItemEntityFromJson(json);
 }

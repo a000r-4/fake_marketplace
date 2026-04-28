@@ -22,7 +22,7 @@ abstract class AuthRepo {
 
   Future<void> signOut();
 
-  Future<void> deleteAccount();
+  Future<void> deleteAccount(String password);
 
   Future<void> reloadUser();
 

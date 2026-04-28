@@ -30,7 +30,7 @@ mixin _$AuthBlocEvent {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +43,7 @@ mixin _$AuthBlocEvent {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,7 +56,7 @@ mixin _$AuthBlocEvent {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -200,7 +200,7 @@ class _$SignInWithEmailImpl implements _SignInWithEmail {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) {
     return signInWithEmail(email, password);
   }
@@ -216,7 +216,7 @@ class _$SignInWithEmailImpl implements _SignInWithEmail {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) {
     return signInWithEmail?.call(email, password);
   }
@@ -232,7 +232,7 @@ class _$SignInWithEmailImpl implements _SignInWithEmail {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) {
     if (signInWithEmail != null) {
@@ -385,7 +385,7 @@ class _$SignUpWithEmailImpl implements _SignUpWithEmail {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) {
     return signUpWithEmail(email, password);
   }
@@ -401,7 +401,7 @@ class _$SignUpWithEmailImpl implements _SignUpWithEmail {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) {
     return signUpWithEmail?.call(email, password);
   }
@@ -417,7 +417,7 @@ class _$SignUpWithEmailImpl implements _SignUpWithEmail {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) {
     if (signUpWithEmail != null) {
@@ -534,7 +534,7 @@ class _$SignOutImpl implements _SignOut {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) {
     return signOut();
   }
@@ -550,7 +550,7 @@ class _$SignOutImpl implements _SignOut {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) {
     return signOut?.call();
   }
@@ -566,7 +566,7 @@ class _$SignOutImpl implements _SignOut {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -726,7 +726,7 @@ class _$SendPhoneCodeImpl implements _SendPhoneCode {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) {
     return sendPhoneCode(phoneNumber, codeSent, onError);
   }
@@ -742,7 +742,7 @@ class _$SendPhoneCodeImpl implements _SendPhoneCode {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) {
     return sendPhoneCode?.call(phoneNumber, codeSent, onError);
   }
@@ -758,7 +758,7 @@ class _$SendPhoneCodeImpl implements _SendPhoneCode {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) {
     if (sendPhoneCode != null) {
@@ -915,7 +915,7 @@ class _$VerifySmsCodeImpl implements _VerifySmsCode {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) {
     return verifySmsCode(verificationId, smsCode);
   }
@@ -931,7 +931,7 @@ class _$VerifySmsCodeImpl implements _VerifySmsCode {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) {
     return verifySmsCode?.call(verificationId, smsCode);
   }
@@ -947,7 +947,7 @@ class _$VerifySmsCodeImpl implements _VerifySmsCode {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) {
     if (verifySmsCode != null) {
@@ -1101,7 +1101,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) {
     return updateProfile(displayName, photoUrl);
   }
@@ -1117,7 +1117,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) {
     return updateProfile?.call(displayName, photoUrl);
   }
@@ -1133,7 +1133,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) {
     if (updateProfile != null) {
@@ -1206,6 +1206,8 @@ abstract class _$$DeleteAccountImplCopyWith<$Res> {
   factory _$$DeleteAccountImplCopyWith(
           _$DeleteAccountImpl value, $Res Function(_$DeleteAccountImpl) then) =
       __$$DeleteAccountImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String password});
 }
 
 /// @nodoc
@@ -1215,26 +1217,51 @@ class __$$DeleteAccountImplCopyWithImpl<$Res>
   __$$DeleteAccountImplCopyWithImpl(
       _$DeleteAccountImpl _value, $Res Function(_$DeleteAccountImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? password = null,
+  }) {
+    return _then(_$DeleteAccountImpl(
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DeleteAccountImpl implements _DeleteAccount {
-  const _$DeleteAccountImpl();
+  const _$DeleteAccountImpl({required this.password});
+
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'AuthBlocEvent.deleteAccount()';
+    return 'AuthBlocEvent.deleteAccount(password: $password)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DeleteAccountImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteAccountImpl &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, password);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteAccountImplCopyWith<_$DeleteAccountImpl> get copyWith =>
+      __$$DeleteAccountImplCopyWithImpl<_$DeleteAccountImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1251,9 +1278,9 @@ class _$DeleteAccountImpl implements _DeleteAccount {
         verifySmsCode,
     required TResult Function(String? displayName, String? photoUrl)
         updateProfile,
-    required TResult Function() deleteAccount,
+    required TResult Function(String password) deleteAccount,
   }) {
-    return deleteAccount();
+    return deleteAccount(password);
   }
 
   @override
@@ -1267,9 +1294,9 @@ class _$DeleteAccountImpl implements _DeleteAccount {
         sendPhoneCode,
     TResult? Function(String verificationId, String smsCode)? verifySmsCode,
     TResult? Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult? Function()? deleteAccount,
+    TResult? Function(String password)? deleteAccount,
   }) {
-    return deleteAccount?.call();
+    return deleteAccount?.call(password);
   }
 
   @override
@@ -1283,11 +1310,11 @@ class _$DeleteAccountImpl implements _DeleteAccount {
         sendPhoneCode,
     TResult Function(String verificationId, String smsCode)? verifySmsCode,
     TResult Function(String? displayName, String? photoUrl)? updateProfile,
-    TResult Function()? deleteAccount,
+    TResult Function(String password)? deleteAccount,
     required TResult orElse(),
   }) {
     if (deleteAccount != null) {
-      return deleteAccount();
+      return deleteAccount(password);
     }
     return orElse();
   }
@@ -1340,7 +1367,13 @@ class _$DeleteAccountImpl implements _DeleteAccount {
 }
 
 abstract class _DeleteAccount implements AuthBlocEvent {
-  const factory _DeleteAccount() = _$DeleteAccountImpl;
+  const factory _DeleteAccount({required final String password}) =
+      _$DeleteAccountImpl;
+
+  String get password;
+  @JsonKey(ignore: true)
+  _$$DeleteAccountImplCopyWith<_$DeleteAccountImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

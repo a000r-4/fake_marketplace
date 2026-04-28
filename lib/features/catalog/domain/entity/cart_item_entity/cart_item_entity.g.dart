@@ -42,3 +42,20 @@ class CartItemEntityImplAdapter extends TypeAdapter<_$CartItemEntityImpl> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$CartItemEntityImpl _$$CartItemEntityImplFromJson(Map<String, dynamic> json) =>
+    _$CartItemEntityImpl(
+      product: ProductEntity.fromJson(json['product'] as Map<String, dynamic>),
+      quantity: (json['quantity'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$$CartItemEntityImplToJson(
+        _$CartItemEntityImpl instance) =>
+    <String, dynamic>{
+      'product': instance.product.toJson(),
+      'quantity': instance.quantity,
+    };

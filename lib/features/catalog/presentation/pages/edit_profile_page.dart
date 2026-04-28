@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../cart_cubit/cart_cubit.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
@@ -44,9 +45,12 @@ class EditProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthBlocEvent.signOut());
-                  Navigator.pop(context); // Возвращаемся в профиль, откуда нас перекинет на Login
+                onPressed: () async {
+                  await context.read<CartCubit>().clearAllLocalData();
+                  if (context.mounted) {
+                    context.read<AuthBloc>().add(const AuthBlocEvent.signOut());
+                    Navigator.pop(context);
+                  }
                 },
                 icon: const Icon(Icons.logout_rounded),
                 label: const Text('Выйти из аккаунта'),
@@ -60,27 +64,44 @@ class EditProfilePage extends StatelessWidget {
   }
 
   void _showDeleteDialog(BuildContext context) {
+    final TextEditingController passwordController = TextEditingController();
+
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Удаление аккаунта'),
-        content: const Text(
-            'Вы уверены? Это действие нельзя отменить. Ваша история покупок и профиль будут удалены навсегда.'
+        title: const Text('Подтвердите удаление'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Это действие необратимо. Введите пароль для подтверждения.'),
+            const SizedBox(height: 16),
+            TextField(
+              controller: passwordController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Ваш пароль',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
         ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
-              child: const Text('Отмена')
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Отмена'),
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () {
-              // Вызываем событие удаления
-              context.read<AuthBloc>().add(const AuthBlocEvent.deleteAccount());
-              Navigator.pop(dialogContext); // Закрываем диалог
-              Navigator.pop(context);       // Закрываем страницу настроек
+              final password = passwordController.text.trim();
+              if (password.isNotEmpty) {
+                // 1. Сначала подтверждаем личность, потом удаляем
+                // Можно передать пароль в событие Блока
+                context.read<AuthBloc>().add(AuthBlocEvent.deleteAccount(password: password));
+                Navigator.pop(dialogContext);
+              }
             },
-            child: const Text('Удалить навсегда'),
+            child: const Text('Удалить всё', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

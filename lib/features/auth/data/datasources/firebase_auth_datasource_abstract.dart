@@ -21,6 +21,8 @@ abstract class FirebaseAuthRemoteDataSourceAbst {
 
   Future<void> reloadUser();
 
+  Future<void> reauthenticate(String password);
+
   Future<void> sendPhoneCode(
       String phoneNumber, {
         required void Function(String verificationId) codeSent,

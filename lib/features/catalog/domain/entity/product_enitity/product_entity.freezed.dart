@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+ProductEntity _$ProductEntityFromJson(Map<String, dynamic> json) {
+  return _ProductEntity.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ProductEntity {
   @HiveField(0)
@@ -31,6 +35,7 @@ mixin _$ProductEntity {
   @HiveField(6)
   double get rating => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProductEntityCopyWith<ProductEntity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -178,6 +183,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 
+@JsonSerializable(explicitToJson: true)
 @HiveType(typeId: 2)
 class _$ProductEntityImpl implements _ProductEntity {
   const _$ProductEntityImpl(
@@ -188,6 +194,9 @@ class _$ProductEntityImpl implements _ProductEntity {
       @HiveField(4) required this.category,
       @HiveField(5) required this.image,
       @HiveField(6) required this.rating});
+
+  factory _$ProductEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductEntityImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -232,6 +241,7 @@ class _$ProductEntityImpl implements _ProductEntity {
             (identical(other.rating, rating) || other.rating == rating));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, title, price, description, category, image, rating);
@@ -241,6 +251,13 @@ class _$ProductEntityImpl implements _ProductEntity {
   @pragma('vm:prefer-inline')
   _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
       __$$ProductEntityImplCopyWithImpl<_$ProductEntityImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProductEntityImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ProductEntity implements ProductEntity {
@@ -252,6 +269,9 @@ abstract class _ProductEntity implements ProductEntity {
       @HiveField(4) required final String category,
       @HiveField(5) required final String image,
       @HiveField(6) required final double rating}) = _$ProductEntityImpl;
+
+  factory _ProductEntity.fromJson(Map<String, dynamic> json) =
+      _$ProductEntityImpl.fromJson;
 
   @override
   @HiveField(0)

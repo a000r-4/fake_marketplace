@@ -74,28 +74,15 @@ class _LoginPageState extends State<LoginPage> {
       setState(() => _passwordError = "Пароли не совпадают");
       return;
     }
-    setState(() {
-      _emailError = null;
-      _passwordError = null;
-    });
 
-    if (_authType == AuthType.login) {
-      context.read<AuthBloc>().add(AuthBlocEvent.signInWithEmail(
-        _emailController.text.trim(),
-        _passwordController.text,
-      ));
-    } else {
-      context.read<AuthBloc>().add(AuthBlocEvent.signUpWithEmail(
-        _emailController.text.trim(),
-        _passwordController.text,
-      ));
-    }
-
+    // Устанавливаем состояние загрузки ПЕРЕД отправкой события
     setState(() {
       _isSubmitting = true;
       _emailError = null;
       _passwordError = null;
     });
+
+    // Вызываем событие ОДИН раз
     if (_authType == AuthType.login) {
       context.read<AuthBloc>().add(AuthBlocEvent.signInWithEmail(
         _emailController.text.trim(),

@@ -6,7 +6,7 @@ part 'product_entity.g.dart'; // Добавляем g.dart для Hive
 
 @freezed
 class ProductEntity with _$ProductEntity {
-  // Указываем typeId для Hive
+  @JsonSerializable(explicitToJson: true) // ДОБАВЬТЕ ЭТУ СТРОКУ
   @HiveType(typeId: 2)
   const factory ProductEntity({
     @HiveField(0) required int id,
@@ -17,4 +17,5 @@ class ProductEntity with _$ProductEntity {
     @HiveField(5) required String image,
     @HiveField(6) required double rating,
   }) = _ProductEntity;
+  factory ProductEntity.fromJson(Map<String, dynamic> json) => _$ProductEntityFromJson(json);
 }

@@ -1,13 +1,19 @@
 import 'package:auth_template/core/exceptions/auth_exceptions.dart';
 import 'package:auth_template/features/auth/domain/entity/user_entity.dart';
 import 'package:auth_template/features/auth/domain/repo/auth_repo_abstract.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hive/hive.dart';
+import '../../../catalog/data/datasource/firebase_cart_service.dart';
+import '../../../catalog/data/model/cart_purchase_model/cart_purchase_model.dart';
+import '../../../catalog/domain/entity/cart_item_entity/cart_item_entity.dart';
 import '../datasources/firebase_auth_datasource_abstract.dart';
 import '../model/user_model.dart';
 
 class FirebaseAuthRepoImpl implements AuthRepo {
-  FirebaseAuthRepoImpl(this._remote);
+  FirebaseAuthRepoImpl(this._remote , this._cartService);
 
   final FirebaseAuthRemoteDataSourceAbst _remote;
+  final FirebaseCartService _cartService;
 
   @override
   Stream<UserEntity?> authStateChanges() {
@@ -85,13 +91,23 @@ class FirebaseAuthRepoImpl implements AuthRepo {
     }
   }
   @override
-  Future<void> deleteAccount() async {
+  Future<void> deleteAccount(String password) async {
     try {
+      // 1. Повторная авторизация (теперь сессия будет 100% свежей)
+      await _remote.reauthenticate(password);
+
+      // 2. Теперь спокойно удаляем данные из Firestore
+      await _cartService.deleteUserData();
+
+      // 3. Чистим локальный кэш
+      await Hive.box<CartItemEntity>('cart_box').clear();
+      await Hive.box<PurchaseModel>('history_box').clear();
+
+      // 4. И наконец — сам аккаунт
       await _remote.deleteAccount();
-    } on AuthException {
+
+    } catch (e) {
       rethrow;
-    } catch (_) {
-      throw AuthException.unknown();
     }
   }
   @override

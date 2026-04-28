@@ -14,7 +14,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
     on<AuthBlocEvent>((event, emit) async {
       await event.map(
         deleteAccount: (e) => _handleAuthTask(emit,
-                () => _repo.deleteAccount()
+                () => _repo.deleteAccount(e.password)
         ),
         signInWithEmail: (e) => _handleAuthTask(emit,
               () => _repo.signInWithEmail(e.email, e.password),

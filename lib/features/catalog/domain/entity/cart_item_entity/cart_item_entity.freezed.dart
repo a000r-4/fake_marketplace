@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+CartItemEntity _$CartItemEntityFromJson(Map<String, dynamic> json) {
+  return _CartItemEntity.fromJson(json);
+}
+
 /// @nodoc
 mixin _$CartItemEntity {
   @HiveField(0)
@@ -21,6 +25,7 @@ mixin _$CartItemEntity {
   @HiveField(1)
   int get quantity => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CartItemEntityCopyWith<CartItemEntity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -117,11 +122,15 @@ class __$$CartItemEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 
+@JsonSerializable(explicitToJson: true)
 @HiveType(typeId: 1)
 class _$CartItemEntityImpl implements _CartItemEntity {
   const _$CartItemEntityImpl(
       {@HiveField(0) required this.product,
       @HiveField(1) required this.quantity});
+
+  factory _$CartItemEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CartItemEntityImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -145,6 +154,7 @@ class _$CartItemEntityImpl implements _CartItemEntity {
                 other.quantity == quantity));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, product, quantity);
 
@@ -154,12 +164,22 @@ class _$CartItemEntityImpl implements _CartItemEntity {
   _$$CartItemEntityImplCopyWith<_$CartItemEntityImpl> get copyWith =>
       __$$CartItemEntityImplCopyWithImpl<_$CartItemEntityImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CartItemEntityImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _CartItemEntity implements CartItemEntity {
   const factory _CartItemEntity(
       {@HiveField(0) required final ProductEntity product,
       @HiveField(1) required final int quantity}) = _$CartItemEntityImpl;
+
+  factory _CartItemEntity.fromJson(Map<String, dynamic> json) =
+      _$CartItemEntityImpl.fromJson;
 
   @override
   @HiveField(0)

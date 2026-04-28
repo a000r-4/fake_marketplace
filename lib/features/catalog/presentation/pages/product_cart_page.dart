@@ -2,6 +2,7 @@ import 'package:auth_template/features/catalog/presentation/pages/widgets/cart_i
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cart_cubit/cart_cubit.dart';
+import '../purchase_history_cubit/purchase_history_cubit.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -19,7 +20,9 @@ class CartPage extends StatelessWidget {
           return state.when(
             initial: () => const Center(child: CircularProgressIndicator()),
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (message) => Center(child: Text(message, style: const TextStyle(color: Colors.red))),
+            error: (message) => Center(
+              child: Text(message, style: const TextStyle(color: Colors.red)),
+            ),
             success: (cartItems, totalPrice) {
               if (cartItems.isEmpty) {
                 return const Center(child: Text('Корзина пуста'));
@@ -44,7 +47,9 @@ class CartPage extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     decoration: const BoxDecoration(
                       color: Colors.white,
-                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+                      boxShadow: [
+                        BoxShadow(color: Colors.black12, blurRadius: 10),
+                      ],
                     ),
                     child: SafeArea(
                       child: Row(
@@ -67,14 +72,15 @@ class CartPage extends StatelessWidget {
                           const SizedBox(width: 20),
                           Expanded(
                             child: ElevatedButton(
-                              onPressed: () {
-                                // Вызываем оформление заказа
-                                context.read<CartCubit>().checkout();
-
-                                // Можно добавить SnackBar после нажатия
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Заказ оформлен!')),
-                                );
+                              onPressed: () async {
+                                await context.read<CartCubit>().checkout();
+                                if (context.mounted) {
+                                  // Триггерим обновление истории сразу после успеха
+                                  context
+                                      .read<PurchaseHistoryCubit>()
+                                      .loadHistory();
+                                  // Переходим на экран истории или показываем успех
+                                }
                               },
                               child: const Text('Оформить заказ'),
                             ),

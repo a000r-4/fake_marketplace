@@ -181,4 +181,27 @@ class FirebaseAuthRemoteDataSourceImpl implements FirebaseAuthRemoteDataSourceAb
       throw AuthException.unknown();
     }
   }
+
+  @override
+  Future<void> reauthenticate(String password) async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null || user.email == null) throw AuthException.unknown();
+
+      // Создаем "удостоверение" на основе текущей почты и введенного пароля
+      AuthCredential credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: password,
+      );
+
+      // Подтверждаем личность
+      await user.reauthenticateWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      // Тут обрабатываем неверный пароль
+      if (e.code == 'wrong-password' || e.code == 'invalid-credential') {
+        throw const AuthException('Неверный текущий пароль');
+      }
+      throw AuthException(e.message ?? 'Ошибка проверки личности');
+    }
+  }
 }
